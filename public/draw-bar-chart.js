@@ -20,8 +20,7 @@ var svg = d3.select('body')
 				height: h
 			})
 			.style({
-				border: '1px solid cornflowerblue',
-				margin: '0 auto'
+				border: '1px solid cornflowerblue'
 			});
 
 var rects = svg.selectAll('rect')
