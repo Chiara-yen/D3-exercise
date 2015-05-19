@@ -1,7 +1,6 @@
 {
   "name": "D3-exercise",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
@@ -10,8 +9,19 @@
   "author": "chiara yen",
   "license": "ISC",
   "dependencies": {
-    "bluebird": "^2.9.25",
+    "colorbrewer": "0.0.2",
+    "css-loader": "^0.12.1",
     "d3": "^3.5.5",
-    "express": "^4.12.4"
-  }
+    "express": "^4.12.4",
+    "extract-text-webpack-plugin": "^0.8.0",
+    "file-loader": "^0.8.1",
+    "less": "^2.5.0",
+    "less-loader": "^2.2.0",
+    "node-libs-browser": "^0.5.0",
+    "style-loader": "^0.12.2",
+    "stylus-loader": "^1.1.1",
+    "url-loader": "^0.5.5",
+    "webpack": "^1.9.7"
+  },
+  "devDependencies": {}
 }

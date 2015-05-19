@@ -1,3 +1,10 @@
+require('./svg.less');
+
+var d3 = require('d3');
+var colorbrewer = require('colorbrewer');
+
+console.log(require('./test.jpg'));
+
 var w = 1200;
 var h = 400;
 var num = 35;
@@ -16,11 +23,9 @@ var svg = d3.select('body')
 			.append('svg')
 			.attr({
 				id: 'bar-chart',
+				class: 'svg',
 				width: w,
 				height: h
-			})
-			.style({
-				border: '1px solid cornflowerblue'
 			});
 
 var rects = svg.selectAll('rect')
@@ -46,10 +51,5 @@ var texts = svg.selectAll('text')
 				.attr({
 					x: function(d,i) { return perW * i + perW/2; },
 					y: function(d,i) { return h - d - 6 ; },
-					width: function(d,i) { return perW; }
-				})
-				.style({
-					'font-family': 'sans-serif',
-					'font-size': '12px',
-					'text-anchor': 'middle'
+					class: 'bar-chart-text'
 				});
