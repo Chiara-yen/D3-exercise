@@ -15,6 +15,7 @@ var perPadding = 2;
 var svg = d3.select('body')
 			.append('svg')
 			.attr({
+				id: 'bar-chart',
 				width: w,
 				height: h
 			})
