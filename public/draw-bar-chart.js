@@ -1,9 +1,7 @@
 require('./svg.less');
-
 var d3 = require('d3');
 var colorbrewer = require('colorbrewer');
 
-console.log(require('./test.jpg'));
 
 var w = 1200;
 var h = 400;
