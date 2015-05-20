@@ -2,13 +2,18 @@ require('./svg.less');
 var d3 = require('d3');
 var colorbrewer = require('colorbrewer');
 
-var w = 1200;
-var h = 400;
+var padding = {top: 20, right: 20, bottom: 20, left: 20};
+var outerW = 1200;
+var outerH = 400;
 var num = 50;
 var dotSize = [5, 10, 15];
 
-var dataset = [];
+var w = outerW - padding.right - padding.left;
+var h = outerH - padding.bottom - padding.top;
+var xRange = [padding.left, outerW - padding.right];
+var yRange = [outerH - padding.bottom, padding.top];
 
+var dataset = [];
 for(var i = 0; i < num; i++) {
 	var data = [];
 	data.push(getHash(1000));
@@ -24,15 +29,16 @@ function getHash(magnification) {
 var xScale = d3.scale.linear()
 				.domain([d3.min(dataset, function(d) { return d[0]; }),
 						d3.max(dataset, function(d) { return d[0]; })])
-				.range([0, w]);
+				.range(xRange);
 
 var yScale = d3.scale.linear()
 				.domain([d3.min(dataset, function(d) { return d[1]; }),
 						d3.max(dataset, function(d) { return d[1]; })])
-				.range([h, 0]);
+				.range(yRange);
 
 var rScale = d3.scale.quantize()
-				.domain([0, d3.max(dataset, function(d) { return d[2]; })])
+				.domain([d3.min(dataset, function(d) { return d[2]; }),
+						d3.max(dataset, function(d) { return d[2]; })])
 				.range(dotSize);
 
 var svg = d3.select('body')
@@ -40,8 +46,8 @@ var svg = d3.select('body')
 			.attr({
 				id: 'scatterplot-chart',
 				class: 'svg',
-				width: w,
-				height: h
+				width: outerW,
+				height: outerH
 			});
 
 var circles = svg.selectAll('circle')
