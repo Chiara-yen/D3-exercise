@@ -74,7 +74,7 @@
 	var yScale = d3.scale.linear()
 					.domain([d3.min(dataset, function(d) { return d[1]; }),
 							d3.max(dataset, function(d) { return d[1]; })])
-					.range([0, h]);
+					.range([h, 0]);
 
 	var svg = d3.select('body')
 				.append('svg')
@@ -91,7 +91,7 @@
 					.append('circle')
 					.attr({
 						cx: function(d,i) { return xScale(d[0]); },
-						cy: function(d,i) { return h - yScale(d[1]); },
+						cy: function(d,i) { return yScale(d[1]); },
 						r: function(d,i) { return Math.round(d[2]); },
 						fill: function(d,i) {
 							var index = Math.round( i % 9 );
@@ -106,7 +106,7 @@
 					.text(function(d) { return Math.round(d[0]) + ' , ' + Math.round(d[1]); })
 					.attr({
 						x: function(d,i) { return xScale(d[0]); },
-						y: function(d,i) { return h - yScale(d[1]); },
+						y: function(d,i) { return yScale(d[1]); },
 						class: 'scatterplot-chart-text'
 					});
 
