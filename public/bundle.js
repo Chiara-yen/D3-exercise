@@ -50,7 +50,8 @@
 
 	var w = 1200;
 	var h = 400;
-	var num = 30;
+	var num = 50;
+	var dotSize = [5, 10, 15];
 
 	var dataset = [];
 
@@ -76,6 +77,10 @@
 							d3.max(dataset, function(d) { return d[1]; })])
 					.range([h, 0]);
 
+	var rScale = d3.scale.quantize()
+					.domain([0, d3.max(dataset, function(d) { return d[2]; })])
+					.range(dotSize);
+
 	var svg = d3.select('body')
 				.append('svg')
 				.attr({
@@ -92,10 +97,18 @@
 					.attr({
 						cx: function(d,i) { return xScale(d[0]); },
 						cy: function(d,i) { return yScale(d[1]); },
-						r: function(d,i) { return Math.round(d[2]); },
+						r: function(d,i) { return rScale(d[2]); },
 						fill: function(d,i) {
-							var index = Math.round( i % 9 );
-							return colorbrewer.PiYG[9][index];
+							switch(rScale(d[2])){
+								case dotSize[0]:
+									return colorbrewer.RdPu[9][7];
+
+								case dotSize[1]:
+									return colorbrewer.RdPu[9][5];
+
+								case dotSize[2]:
+									return colorbrewer.RdPu[9][3];
+							}
 						}
 					});
 
@@ -141,7 +154,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
-	exports.push([module.id, ".svg {\n  border: 1px solid turquoise;\n}\n.scatterplot-chart-text {\n  font-family: sans-serif;\n  font-size: 12px;\n  text-anchor: middle;\n}\n", ""]);
+	exports.push([module.id, ".svg {\n  border: 1px solid tomato;\n}\n.scatterplot-chart-text {\n  font-family: sans-serif;\n  font-size: 12px;\n  text-anchor: middle;\n}\n", ""]);
 
 /***/ },
 /* 3 */
