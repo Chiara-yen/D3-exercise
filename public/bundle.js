@@ -45,11 +45,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1);
-
 	var d3 = __webpack_require__(5);
 	var colorbrewer = __webpack_require__(6);
-
-	console.log(__webpack_require__(8));
 
 	var w = 1200;
 	var h = 400;
@@ -68,37 +65,10 @@
 	var svg = d3.select('body')
 				.append('svg')
 				.attr({
-					id: 'bar-chart',
-					class: 'svg',
+					id: 'scatterplot-chart',
 					width: w,
 					height: h
 				});
-
-	var rects = svg.selectAll('rect')
-					.data(dataset)
-					.enter()
-					.append('rect')
-					.attr({
-						width: function(d,i) { return perW - perPadding; },
-						height: function(d,i) { return d; },
-						x: function(d,i) { return perW * i; },
-						y: function(d,i) { return h - d; },
-						fill: function(d,i) {
-							var index = Math.round( i % 9 );
-							return colorbrewer.YlGnBu[9][index];
-						}
-					});
-
-	var texts = svg.selectAll('text')
-					.data(dataset)
-					.enter()
-					.append('text')
-					.text(function(d) { return Math.round(d); })
-					.attr({
-						x: function(d,i) { return perW * i + perW/2; },
-						y: function(d,i) { return h - d - 6 ; },
-						class: 'bar-chart-text'
-					});
 
 /***/ },
 /* 1 */
@@ -131,7 +101,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
-	exports.push([module.id, ".svg {\n  border: 1px solid cornflowerblue;\n}\n.bar-chart-text {\n  font-family: sans-serif;\n  font-size: 12px;\n  text-anchor: middle;\n}\n", ""]);
+	exports.push([module.id, ".svg {\n  border: 1px solid tomato;\n}\n", ""]);
 
 /***/ },
 /* 3 */
@@ -10250,12 +10220,6 @@
 
 	}();
 
-
-/***/ },
-/* 8 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__.p + "bcfe6ee588b0de7c1a3d91676128d964.jpg"
 
 /***/ }
 /******/ ]);
