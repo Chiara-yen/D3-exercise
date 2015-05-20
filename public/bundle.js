@@ -50,24 +50,21 @@
 
 	var w = 1200;
 	var h = 400;
-	var num = 100;
+	var num = 75;
 
 	var dataset = [];
 
 	for(var i = 0; i < num; i++) {
 		var data = [];
-		data.push(getHash());
-		data.push(getHash());
+		data.push(getHash(1000));
+		data.push(getHash(1000));
+		data.push(getHash(20));
 		dataset.push(data);
 	}
 
-	function getHash() {
-		return Math.random()*1000;
+	function getHash(magnification) {
+		return Math.random()*magnification;
 	}
-
-
-	var perW = w/dataset.length;
-	var perPadding = 2;
 
 
 	var svg = d3.select('body')
@@ -86,11 +83,22 @@
 					.attr({
 						cx: function(d,i) { return d[0]; },
 						cy: function(d,i) { return d[1]; },
-						r: 10,
+						r: function(d,i) { return Math.round(d[2]); },
 						fill: function(d,i) {
 							var index = Math.round( i % 9 );
 							return colorbrewer.PiYG[9][index];
 						}
+					});
+
+	var texts = svg.selectAll('text')
+					.data(dataset)
+					.enter()
+					.append('text')
+					.text(function(d) { return Math.round(d[0]) + ' , ' + Math.round(d[1]); })
+					.attr({
+						x: function(d,i) { return d[0]; },
+						y: function(d,i) { return d[1]; },
+						class: 'scatterplot-chart-text'
 					});
 
 /***/ },
@@ -124,7 +132,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
-	exports.push([module.id, ".svg {\n  border: 1px solid turquoise;\n}\n", ""]);
+	exports.push([module.id, ".svg {\n  border: 1px solid turquoise;\n}\n.scatterplot-chart-text {\n  font-family: sans-serif;\n  font-size: 12px;\n  text-anchor: middle;\n}\n", ""]);
 
 /***/ },
 /* 3 */
