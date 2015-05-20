@@ -48,9 +48,9 @@
 	var d3 = __webpack_require__(5);
 	var colorbrewer = __webpack_require__(6);
 
-	var padding = {top: 20, right: 20, bottom: 20, left: 20};
+	var padding = {top: 50, right: 80, bottom: 100, left: 100};
 	var outerW = 1200;
-	var outerH = 400;
+	var outerH = 500;
 	var num = 50;
 	var dotSize = [5, 10, 15];
 
@@ -107,13 +107,13 @@
 						fill: function(d,i) {
 							switch(rScale(d[2])){
 								case dotSize[0]:
-									return colorbrewer.RdPu[9][7];
+									return colorbrewer.YlOrBr[9][7];
 
 								case dotSize[1]:
-									return colorbrewer.RdPu[9][5];
+									return colorbrewer.YlOrBr[9][5];
 
 								case dotSize[2]:
-									return colorbrewer.RdPu[9][3];
+									return colorbrewer.YlOrBr[9][3];
 							}
 						}
 					});
@@ -128,6 +128,31 @@
 						y: function(d,i) { return yScale(d[1]); },
 						class: 'scatterplot-chart-text'
 					});
+
+	var xAxis = d3.svg.axis()
+					.scale(xScale)
+					.orient('bottom');
+
+	var yAxis = d3.svg.axis()
+					.scale(yScale)
+					.orient('left').
+					ticks(5);
+
+	var xLines = svg.append('g')
+					.attr({
+						id: 'x-lines',
+						class: 'lines',
+						transform: 'translate(0,'+ (outerH - (padding.bottom / 3 * 2)) +')'
+					})
+					.call(xAxis);
+
+	var yLines = svg.append('g')
+					.attr({
+						id: 'y-lines',
+						class: 'lines',
+						transform: 'translate('+ (padding.left / 3 * 2) +',0)'
+					})
+					.call(yAxis);
 
 /***/ },
 /* 1 */
@@ -160,7 +185,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
-	exports.push([module.id, ".svg {\n  border: 1px solid tomato;\n}\n.scatterplot-chart-text {\n  font-family: sans-serif;\n  font-size: 12px;\n  text-anchor: middle;\n}\n", ""]);
+	exports.push([module.id, ".svg {\n  border: 1px solid tomato;\n}\n.scatterplot-chart-text {\n  font-family: sans-serif;\n  font-size: 12px;\n  text-anchor: middle;\n}\n.lines path,\n.lines line {\n  fill: none;\n  stroke: darkgoldenrod;\n}\n.lines text {\n  font-family: sans-serif;\n  font-size: 12px;\n}\n", ""]);
 
 /***/ },
 /* 3 */

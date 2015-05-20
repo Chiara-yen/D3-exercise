@@ -2,9 +2,9 @@ require('./svg.less');
 var d3 = require('d3');
 var colorbrewer = require('colorbrewer');
 
-var padding = {top: 20, right: 20, bottom: 20, left: 20};
+var padding = {top: 50, right: 80, bottom: 100, left: 100};
 var outerW = 1200;
-var outerH = 400;
+var outerH = 500;
 var num = 50;
 var dotSize = [5, 10, 15];
 
@@ -61,13 +61,13 @@ var circles = svg.selectAll('circle')
 					fill: function(d,i) {
 						switch(rScale(d[2])){
 							case dotSize[0]:
-								return colorbrewer.RdPu[9][7];
+								return colorbrewer.YlOrBr[9][7];
 
 							case dotSize[1]:
-								return colorbrewer.RdPu[9][5];
+								return colorbrewer.YlOrBr[9][5];
 
 							case dotSize[2]:
-								return colorbrewer.RdPu[9][3];
+								return colorbrewer.YlOrBr[9][3];
 						}
 					}
 				});
@@ -82,3 +82,28 @@ var texts = svg.selectAll('text')
 					y: function(d,i) { return yScale(d[1]); },
 					class: 'scatterplot-chart-text'
 				});
+
+var xAxis = d3.svg.axis()
+				.scale(xScale)
+				.orient('bottom');
+
+var yAxis = d3.svg.axis()
+				.scale(yScale)
+				.orient('left').
+				ticks(5);
+
+var xLines = svg.append('g')
+				.attr({
+					id: 'x-lines',
+					class: 'lines',
+					transform: 'translate(0,'+ (outerH - (padding.bottom / 3 * 2)) +')'
+				})
+				.call(xAxis);
+
+var yLines = svg.append('g')
+				.attr({
+					id: 'y-lines',
+					class: 'lines',
+					transform: 'translate('+ (padding.left / 3 * 2) +',0)'
+				})
+				.call(yAxis);
