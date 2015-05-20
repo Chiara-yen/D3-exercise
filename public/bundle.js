@@ -50,13 +50,21 @@
 
 	var w = 1200;
 	var h = 400;
-	var num = 35;
+	var num = 100;
 
 	var dataset = [];
+
 	for(var i = 0; i < num; i++) {
-		var hash = Math.random()*100;
-		dataset.push(hash);
+		var data = [];
+		data.push(getHash());
+		data.push(getHash());
+		dataset.push(data);
 	}
+
+	function getHash() {
+		return Math.random()*1000;
+	}
+
 
 	var perW = w/dataset.length;
 	var perPadding = 2;
@@ -66,9 +74,24 @@
 				.append('svg')
 				.attr({
 					id: 'scatterplot-chart',
+					class: 'svg',
 					width: w,
 					height: h
 				});
+
+	var circles = svg.selectAll('circle')
+					.data(dataset)
+					.enter()
+					.append('circle')
+					.attr({
+						cx: function(d,i) { return d[0]; },
+						cy: function(d,i) { return d[1]; },
+						r: 10,
+						fill: function(d,i) {
+							var index = Math.round( i % 9 );
+							return colorbrewer.PiYG[9][index];
+						}
+					});
 
 /***/ },
 /* 1 */
@@ -101,7 +124,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
-	exports.push([module.id, ".svg {\n  border: 1px solid tomato;\n}\n", ""]);
+	exports.push([module.id, ".svg {\n  border: 1px solid turquoise;\n}\n", ""]);
 
 /***/ },
 /* 3 */
