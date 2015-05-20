@@ -16,9 +16,9 @@ var yRange = [outerH - padding.bottom, padding.top];
 var dataset = [];
 for(var i = 0; i < num; i++) {
 	var data = [];
-	data.push(getHash(1000));
-	data.push(getHash(1000));
-	data.push(getHash(20));
+	data.push(getHash(1000)); //x
+	data.push(getHash(1000)); //y
+	data.push(getHash(20));   //r
 	dataset.push(data);
 }
 

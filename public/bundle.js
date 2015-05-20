@@ -62,9 +62,9 @@
 	var dataset = [];
 	for(var i = 0; i < num; i++) {
 		var data = [];
-		data.push(getHash(1000));
-		data.push(getHash(1000));
-		data.push(getHash(20));
+		data.push(getHash(1000)); //x
+		data.push(getHash(1000)); //y
+		data.push(getHash(20));   //r
 		dataset.push(data);
 	}
 
@@ -185,7 +185,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
-	exports.push([module.id, ".svg {\n  border: 1px solid tomato;\n}\n.scatterplot-chart-text {\n  font-family: sans-serif;\n  font-size: 12px;\n  text-anchor: middle;\n}\n.lines path,\n.lines line {\n  fill: none;\n  stroke: darkgoldenrod;\n}\n.lines text {\n  font-family: sans-serif;\n  font-size: 12px;\n}\n", ""]);
+	exports.push([module.id, ".svg {\n  border: 1px solid tomato;\n}\n.scatterplot-chart-text {\n  font-family: sans-serif;\n  font-size: 12px;\n  text-anchor: middle;\n  fill: none;\n}\n.scatterplot-chart-text.hover {\n  fill: darkgoldenrod;\n}\n.lines path,\n.lines line {\n  fill: none;\n  stroke: darkgoldenrod;\n}\n.lines text {\n  font-family: sans-serif;\n  font-size: 12px;\n}\n", ""]);
 
 /***/ },
 /* 3 */
