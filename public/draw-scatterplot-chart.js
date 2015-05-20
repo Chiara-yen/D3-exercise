@@ -4,7 +4,7 @@ var colorbrewer = require('colorbrewer');
 
 var w = 1200;
 var h = 400;
-var num = 75;
+var num = 30;
 
 var dataset = [];
 
@@ -20,6 +20,15 @@ function getHash(magnification) {
 	return Math.random()*magnification;
 }
 
+var xScale = d3.scale.linear()
+				.domain([d3.min(dataset, function(d) { return d[0]; }),
+						d3.max(dataset, function(d) { return d[0]; })])
+				.range([0, w]);
+
+var yScale = d3.scale.linear()
+				.domain([d3.min(dataset, function(d) { return d[1]; }),
+						d3.max(dataset, function(d) { return d[1]; })])
+				.range([0, h]);
 
 var svg = d3.select('body')
 			.append('svg')
@@ -35,8 +44,8 @@ var circles = svg.selectAll('circle')
 				.enter()
 				.append('circle')
 				.attr({
-					cx: function(d,i) { return d[0]; },
-					cy: function(d,i) { return d[1]; },
+					cx: function(d,i) { return xScale(d[0]); },
+					cy: function(d,i) { return h - yScale(d[1]); },
 					r: function(d,i) { return Math.round(d[2]); },
 					fill: function(d,i) {
 						var index = Math.round( i % 9 );
@@ -50,7 +59,7 @@ var texts = svg.selectAll('text')
 				.append('text')
 				.text(function(d) { return Math.round(d[0]) + ' , ' + Math.round(d[1]); })
 				.attr({
-					x: function(d,i) { return d[0]; },
-					y: function(d,i) { return d[1]; },
+					x: function(d,i) { return xScale(d[0]); },
+					y: function(d,i) { return h - yScale(d[1]); },
 					class: 'scatterplot-chart-text'
 				});
