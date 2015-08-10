@@ -1,5 +1,5 @@
 module.exports = {
-    entry: "./public/draw-bar-chart.js",
+    entry: "./public/draw-scatterplot-chart.js",
     output: {
         path: __dirname + '/public',
         filename: "bundle.js"

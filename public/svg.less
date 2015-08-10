@@ -1,9 +1,25 @@
 .svg {
-	border: 1px solid cornflowerblue;
+	border: 1px solid tomato;
 }
 
-.bar-chart-text {
+.scatterplot-chart-text {
 	font-family: sans-serif;
 	font-size: 12px;
 	text-anchor: middle;
+	fill: none;
+	&.hover {
+		fill: darkgoldenrod;
+	}
+}
+
+.lines {
+	path, line {
+		fill: none;
+		stroke: darkgoldenrod;
+	}
+
+	text {
+		font-family: sans-serif;
+		font-size: 12px;
+	}
 }
