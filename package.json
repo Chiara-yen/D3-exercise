@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node index.js",
+    "build": "webpack",
+    "clean": "rm ./public/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "chiara yen",
@@ -13,7 +15,6 @@
     "css-loader": "^0.12.1",
     "d3": "^3.5.5",
     "express": "^4.12.4",
-    "extract-text-webpack-plugin": "^0.8.0",
     "file-loader": "^0.8.1",
     "less": "^2.5.0",
     "less-loader": "^2.2.0",
